@@ -20,8 +20,8 @@ Add folder to use as mount root
 sudo mkdir -p /mnt/kubernetes-volumes
 sudo mkdir -p /mnt/kubernetes-volumes/data
 # set access
-sudo chown nobody:nogroup /mnt/kubernetes-volumes/data
-sudo chmod 777 /mnt/kubernetes-volumes/data
+sudo chown -R nobody:nobody /mnt/kubernetes-volumes/data
+sudo chmod  -R 777 /mnt/kubernetes-volumes/data
 ```
 Add folder in nfs export
 ```bash
