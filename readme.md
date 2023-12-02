@@ -42,8 +42,14 @@ mkdir test-folder
 sudo mount -t nfs -o vers=4 SERVER-NFS-IP:/myNFS ./test-folder
 ```
 
-## Install NFS external provisioner on k8s cluster
+## Install nfs-subdir-external-provisioner on k8s cluster
 Install with Helm
 ```bash
-
+# Add nfs-subdir-external-provisioner repos
+helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+#  Install in k8s
+helm install -n nfs-provisioning --create-namespace nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=SERVER-NFS-IP --set nfs.path=/opt/dynamic-storage
+# Verify
+kubectl get all -n nfs-provisioning
+kubectl get sc -n nfs-provisioning
 ```
