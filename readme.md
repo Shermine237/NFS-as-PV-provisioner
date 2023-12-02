@@ -56,7 +56,12 @@ Install with Helm
 # Add nfs-subdir-external-provisioner repos
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
 #  Install in k8s
-helm install -n nfs-provisioning --create-namespace nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=SERVER-NFS-IP --set nfs.path=/mnt/kubernetes-volumes/data
+helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
+    --create-namespace nfs-subdir-external-provisioner \
+    --set nfs.server=192.168.100.100 \
+    --set nfs.path=/mnt/kubernetes-volumes/data \
+    --set storageClass.onDelete=retain \
+    --set storageClass.pathPattern='/${.PVC.namespace}-${.PVC.name}'
 # Verify
 kubectl get all -n nfs-provisioning
 kubectl get sc -n nfs-provisioning
