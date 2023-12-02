@@ -16,11 +16,16 @@ sudo systemctl start nfs-nfsv4-server.service
 ### Add folder
 Add folder to use as mount root
 ```bash
-sudo mkdir /myNFS
+# create folder
+sudo mkdir -p /mnt/kubernetes-volumes
+sudo mkdir -p /mnt/kubernetes-volumes/data
+# set access
+sudo chown nobody:nogroup /mnt/kubernetes-volumes/data
+sudo chmod 777 /mnt/kubernetes-volumes/data
 ```
 Add folder in nfs export
 ```bash
-sudo cat "/myNFS *(rw,sync,no_subtree_check)" >> /etc/exports
+# opem /etc/exports and add: /mnt/kubernetes-volumes *(rw,sync,no_subtree_check,insecure,no_root_squash)
 ```
 Reload nfs export
 ```bash
@@ -36,10 +41,13 @@ sudo iptables-save > /etc/iptables/iptables.rules
 ```
 
 ### Test NFS
+```bash
+showmount -e SEL-IP-ADDRESS
+```
 On another PC: 
 ```bash
 mkdir test-folder
-sudo mount -t nfs -o vers=4 SERVER-NFS-IP:/myNFS ./test-folder
+sudo mount -t nfs -o vers=4 SERVER-NFS-IP:/mnt/kubernetes-volumes ./test-folder
 ```
 
 ## Install nfs-subdir-external-provisioner on k8s cluster
