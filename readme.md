@@ -48,7 +48,7 @@ Install with Helm
 # Add nfs-subdir-external-provisioner repos
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
 #  Install in k8s
-helm install -n nfs-provisioning --create-namespace nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=SERVER-NFS-IP --set nfs.path=/opt/dynamic-storage
+helm install -n nfs-provisioning --create-namespace nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=SERVER-NFS-IP --set nfs.path=NFS-FOLDER
 # Verify
 kubectl get all -n nfs-provisioning
 kubectl get sc -n nfs-provisioning
