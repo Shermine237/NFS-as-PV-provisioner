@@ -47,7 +47,7 @@ showmount -e SEL-IP-ADDRESS
 On another PC: 
 ```bash
 mkdir test-folder
-sudo mount -t nfs -o vers=4 SERVER-NFS-IP:/mnt/kubernetes-volumes ./test-folder
+sudo mount -t nfs -o vers=4 SERVER-NFS-IP:/mnt/kubernetes-volumes/data ./test-folder
 ```
 
 ## Install nfs-subdir-external-provisioner on k8s cluster
@@ -56,7 +56,7 @@ Install with Helm
 # Add nfs-subdir-external-provisioner repos
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
 #  Install in k8s
-helm install -n nfs-provisioning --create-namespace nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=SERVER-NFS-IP --set nfs.path=NFS-FOLDER
+helm install -n nfs-provisioning --create-namespace nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=SERVER-NFS-IP --set nfs.path=/mnt/kubernetes-volumes/data
 # Verify
 kubectl get all -n nfs-provisioning
 kubectl get sc -n nfs-provisioning
