@@ -4,7 +4,7 @@ Sample with Archlinux server
 ```bash
 sudo pacman -Sy nfs-utils
 ```
-Enavle and start service
+Enable and start service
 ```bash
 sudo systemctl enable nfs-server.service
 sudo systemctl start nfs-server.service
