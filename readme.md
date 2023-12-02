@@ -1,6 +1,6 @@
 # How to use NFS as storage classe proviser to bind PVs
 ## Install NFS-server on file server, Master k8s and Worker k8s
-Sample with Archlinux server
+Sample with Archlinux server, install again in worker k8s and backup-server
 ```bash
 sudo pacman -Sy nfs-utils
 ```
@@ -21,11 +21,11 @@ sudo mkdir -p /mnt/kubernetes-volumes
 sudo mkdir -p /mnt/kubernetes-volumes/data
 # set access
 sudo chown -R nobody:nobody /mnt/kubernetes-volumes/data
-sudo chmod  -R 777 /mnt/kubernetes-volumes/data
+sudo chmod -R 777 /mnt/kubernetes-volumes/data
 ```
 Add folder in nfs export
 ```bash
-# opem /etc/exports and add: /mnt/kubernetes-volumes *(rw,sync,no_subtree_check,insecure,no_root_squash)
+# open /etc/exports and add: /mnt/kubernetes-volumes *(rw,sync,no_subtree_check,insecure,no_root_squash)
 ```
 Reload nfs export
 ```bash
