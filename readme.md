@@ -4,6 +4,13 @@ Sample with Archlinux server
 ```bash
 sudo pacman -Sy nfs-utils
 ```
+Enavle and start service
+```bash
+sudo systemctl enable nfs-server.service
+sudo systemctl start nfs-server.service
+sudo systemctl enable nfsv4-server.service
+sudo systemctl start nfs-nfsv4-server.service
+```
 
 ## Configuration
 ### Add folder
@@ -35,7 +42,8 @@ mkdir test-folder
 sudo mount -t nfs -o vers=4 SERVER-NFS-IP:/myNFS ./test-folder
 ```
 
-
-
-
 ## Install NFS external provisioner on k8s cluster
+Install with Helm
+```bash
+
+```
