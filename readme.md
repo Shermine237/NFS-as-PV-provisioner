@@ -9,7 +9,7 @@ Enable and start service
 sudo systemctl enable nfs-server.service
 sudo systemctl start nfs-server.service
 sudo systemctl enable nfsv4-server.service
-sudo systemctl start nfs-nfsv4-server.service
+sudo systemctl start nfsv4-server.service
 ```
 
 ## Configuration
@@ -37,7 +37,8 @@ Allow nfs port
 ```bash
 sudo iptables -A INPUT -p tcp --dport 2049 -j ACCEPT
 sudo iptables -A INPUT -p udp --dport 2049 -j ACCEPT
-sudo iptables-save > /etc/iptables/iptables.rules
+sudo su
+iptables-save > /etc/iptables/iptables.rules
 ```
 
 ### Test NFS
