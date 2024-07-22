@@ -67,3 +67,9 @@ helm install -n nfs-provisioning --create-namespace nfs-subdir-external-provisio
 kubectl get all -n nfs-provisioning
 kubectl get sc -n nfs-provisioning
 ```
+## Set this provisioner as default provisioner
+```bash
+kubectl patch storageclass nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+```
+
+
